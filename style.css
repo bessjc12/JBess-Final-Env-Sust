@@ -1,0 +1,115 @@
+html,
+body {
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+    background: #ffffcc; 
+}
+
+body {
+    font-family: Lato, sans-serif !important;
+    font-weight: 400;
+    font-size: 8pt;
+    color: black;
+}
+div#chart1 {
+    overflow-x: hidden;
+    background: lightgreen; /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient(red, yellow,lightgreen); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(red, yellow,lightgreen); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(red, yellow,lightgreen); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(red, yellow,lightgreen); /* Standard syntax */
+}
+div#chart2 {
+    overflow-x: hidden;
+    background: #ccffcc;
+}
+div#opening {
+    overflow-x: hidden;
+    background: #66ccff;
+
+}
+h1,h2,h3
+h4 {
+    color: black;
+    margin: 0 0 .5em;
+}
+
+h1 {
+    font: 400 30px/1.3em Lato, sans-serif;
+}
+
+h4 {
+    font: 600 16px/1.3em Lato, sans-serif;
+}
+
+p,
+ul,
+li {
+    font: 400 16px/24px Lato, sans-serif;
+    margin: 0 0 .5em;
+    color: black;
+}
+
+.axis .labels {
+      font-size: 12px;
+      letter-spacing: 2px;
+}
+
+.section {
+  padding: 1em 0;
+}
+
+.circ { 
+    stroke-width: 0;
+    fill: #1696d2;
+    opacity: 0.6;
+    stroke-linecap: round;
+ }
+
+.line {
+	stroke: black;
+	stroke-width: 3;
+	fill: none;
+    opacity: 0.7;
+    stroke-linecap: round;
+}
+.legend rect {
+  fill:white;
+  stroke:black;
+  opacity:0.8;}
+
+.year_note {
+    font: Lato;
+    font-size: 12px;
+    fill: #5c5859;
+}
+
+.year_note_min {
+    font: Lato;
+    font-size: 6px;
+    fill: #5c5859;
+}
+
+.annotation {
+    font: Lato;
+    font-size: 20px;
+    fill: #1696d2;
+}
+
+div.tooltip {   
+    position: absolute;         
+    text-align: center; 
+    vertical-align: middle;        
+    padding: 5px;               
+    background: #ffffcc; 
+    border: 0px;        
+    border-radius: 6px;         
+    pointer-events: none;           
+}
+
+p.tooltip_text {
+    font: 400 16px/24px Lato, sans-serif;
+    margin: 0 0 .5em;
+    color: black;
+}

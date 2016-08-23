@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Environmental Impact of Increased Access to Electric Power</title>
+
+  <link rel="stylesheet" href="lib/bootstrap.min.css">
+  <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+
+<div id="opening">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div id="titleparent">
+                    <div id="titleholder">
+                        <h1 class="projtitle">Developing World Relationship: Is Electricity Access Leading to Less Environmental Pollution?</h1>                       
+                    </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+</div>  
+<div class='controls section'>
+  <div class='container'>
+    <div class='btn-toolbar'>
+      <label for='region'>Region: </label>
+      <select id='region'>
+        <option value='All'>All Countries</option>
+        <option value='LatAm'>Latin America</option>
+        <option value='Africa'>Africa</option>
+        <option value='Middle East'>Middle East</option>          
+        <option value='Asia'>Asia</option>          
+      </select>
+   </div>
+  </div>
+</div>    
+
+<div class="main section">
+
+  <div class="container"> 
+  <h3>Compare the relationship between increased access to electricity and  <br>
+                            CO2 Emissions per KWH produced in developing countries</h3> <br>  
+    <div id="chart1"></div>
+      <p> Source: Hsu, A. et al. (2016). 2016 Environmental Performance Index. New Haven, CT: Yale University. Available: www.epi.yale.edu.</p>  
+      <div id="tooltip" class="hidden">
+        <p><strong><span id="country"></span></strong></p>                                 
+      </div> <br>
+  <h3>Developing countries progress in providing clean energy to the population  <br>
+      Showing Percent of Population with access to electricity</h3> <br>    
+    <div id="chart2"></div>
+    <p> Source: Hsu, A. et al. (2016). 2016 Environmental Performance Index. New Haven, CT: Yale University. Available: www.epi.yale.edu. </p>   
+  </div>
+</div>
+
+</div>
+<script type="text/javascript" src="lib/d3.v4.min.js"></script>
+<script src="lib/jquery-2.2.1.min.js"></script>
+<script src="lib/bootstrap.min.js"></script>
+<script type="text/javascript" src="script.js"></script>
+<script src="lib/d3.legend.js"></script>
+</body>
+</html>
