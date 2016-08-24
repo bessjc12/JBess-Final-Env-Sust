@@ -37,8 +37,8 @@ var stg_delay = 350;
 
 var width = 625 - margin.left - margin.right;
 var height = 450 - margin.top - margin.bottom;
-var legendRectSize = 18;                                  // NEW
-var legendSpacing = 4; 
+//var legendRectSize = 18;                                  // NEW
+//var legendSpacing = 4; 
 
 function DirectedScatterPlot(data) {
 
@@ -75,12 +75,12 @@ DirectedScatterPlot.prototype.update = function (data) {
     
 console.log(full);
     chart.svg.selectAll(".circ").remove();
+    // Interrupt ongoing transitions:
     chart.svg.selectAll(".line").remove();
 
     // Remove existing map on reset:
     d3.select("#chart2").selectAll("path").remove();
 
-    // Interrupt ongoing transitions:
     chart.svg.selectAll("*").interrupt();
 
     chart.svg.append("g")
@@ -99,7 +99,7 @@ console.log(full);
         .attr("x", -(height / 2))
         .attr("y", -(margin.left * 0.75))
         .style("text-anchor", "middle")
-        .html("CO2 Emissions per KWH Electricity Produced");
+        .html("Change in CO2 Emissions per KWH Electricity Produced");
 
     chart.svg
         .append("text")
@@ -136,7 +136,7 @@ console.log(full);
         // Many more eases here: https://github.com/d3/d3/blob/master/API.md#easings-d3-ease
         .attr("opacity",1);
 
-    chart.svg
+    chart.svg.selectAll(".circ")
         .on("mouseover", function(d) {
             chart.tooltip.transition()
                 .duration(200)
@@ -180,6 +180,26 @@ function Choropleth(change, countries){
         .append("g")
         .attr("transform", function(){ return "translate(" + margin.right + "," + margin.top + ")" });
 
+    //add legend
+    var linear = d3.scaleLinear()
+        .domain(["0","10","20","30","40","50","60","80","90","100"])
+        .range(["rgb(255,51,0)", "rgb(255,173,153)","rgb(255,153,51)","rgb(255,255,0)","rgb(204,255,51)","rgb(0,255,0)","rgb(102,255,204)","rgb(0,153,0)","rgb(0,0,255)"]);
+
+    var svg = d3.select("#chart2 > svg");
+
+    svg.append("g")
+        .attr("class", "legendLinear")
+        .attr("transform", "translate(40,20)");
+
+    var legendLinear = d3.legendColor()
+        .shapeWidth(20)
+        .cells(10)
+        .orient('horizontal')
+        .scale(linear);
+
+    svg.select(".legendLinear")
+        .call(legendLinear);   
+
     // Data merge:
     for (var i = 0; i < change.length; i++) {
 
@@ -213,15 +233,15 @@ Choropleth.prototype.update = function () {
     chart.svg.selectAll("*").interrupt();
 
     chart.title_text = chart.svg.append("g").attr("transform", "translate(0,0)");
-
-    chart.color_range = ["#b0b0ff","#9c9cff","#8989ff","#7575ff","#6262ff","#4e4eff","#3b3bff","#2727ff","#1414ff"];
+    
+    chart.color_range = ["#ff3300","ffad99","#ff9933","#ffff00","#ccff33","#00ff00","#66ffcc","#009900","#0000ff"];
    
     chart.data_bins = [0,10,20,30,40,50,60,80,90,100];
 
     chart.colorScale = d3.scaleLinear()
         .domain(chart.data_bins)
         .range(chart.color_range);
-       // .invert();
+        
 
     chart.xScale = d3.scaleLinear()
         .domain([0, 100])
@@ -243,7 +263,8 @@ Choropleth.prototype.update = function () {
     chart.tooltip = d3.select("body").append("div")   
         .attr("class", "tooltip")               
         .style("opacity", 0);
-
+    
+          
     
     // First create a map projection and specify some options:
     var projection = d3.geoEquirectangular()
@@ -262,28 +283,7 @@ Choropleth.prototype.update = function () {
         .attr("d", projectionPath)
         .attr("stroke", "gray");
 
-    //var legend = chart.svg.selectAll(".legend")
-        //.data(chart.countries.features)
-        //.enter().append("g")
-        //.attr("class", "legend")
-        //.attr("transform", function (d,i) { 
-            //return "translate(55," + i * 20 + ")"; 
-            //});
-
-    //legend.append("rect")
-        //.attr("x", width - 10)
-        //.attr("width", 10)
-        //.attr("height", 10)
-        //.style("fill", chart.color_range)
-        //.style("stroke", "grey");
-
-    //legend.append("text")
-        //.attr("x", width - 12)
-        //.attr("y", 6)
-        //.attr("dy", ".35em")
-        //.style("text-anchor", "end")
-        //.text(function (d) { return d; });
-
+    
     chart.map
         .on("mouseover", function(d) {
             chart.tooltip.transition()
@@ -308,6 +308,7 @@ Choropleth.prototype.update = function () {
         .transition().delay(2000).duration(1000)
         .style("fill", function(d) {
             return chart.colorScale(d.properties.value_1990);
+
         });
 };       
         
