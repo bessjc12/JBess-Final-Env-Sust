@@ -99,7 +99,7 @@ console.log(full);
         .attr("x", -(height / 2))
         .attr("y", -(margin.left * 0.75))
         .style("text-anchor", "middle")
-        .html("Change in CO2 Emissions per KWH Electricity Produced");
+        .html("Change in CO2 Emissions per KWH Electricity Produced(2012)");
 
     chart.svg
         .append("text")
@@ -180,7 +180,7 @@ function Choropleth(change, countries){
         .append("g")
         .attr("transform", function(){ return "translate(" + margin.right + "," + margin.top + ")" });
 
-    //add legend
+    //add legend...Thanks to Susie Lu https://d-3-legend.susielu.com
     var linear = d3.scaleLinear()
         .domain(["0","10","20","30","40","50","60","80","90","100"])
         .range(["rgb(255,51,0)", "rgb(255,173,153)","rgb(255,153,51)","rgb(255,255,0)","rgb(204,255,51)","rgb(0,255,0)","rgb(102,255,204)","rgb(0,153,0)","rgb(0,0,255)"]);
@@ -196,7 +196,7 @@ function Choropleth(change, countries){
         .cells(10)
         .orient('horizontal')
         .scale(linear);
-
+ 
     svg.select(".legendLinear")
         .call(legendLinear);   
 
